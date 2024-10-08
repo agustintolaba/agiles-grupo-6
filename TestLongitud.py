@@ -4,19 +4,19 @@ from assignWord import Ahorcado
 class TestLongitudPalabra(unittest.TestCase):
    
 
-    def Test_informaCantidadDeLetrasPalabraVacia(self):
+    def test_informaCantidadDeLetrasPalabraVacia(self):
         ahorcado = Ahorcado()
         palabra_manual = ''
         palabra_asignada= ahorcado.ingresa_palabra(palabra_manual)
         self.assertEqual(ahorcado.informaCantidadDeLetrasDeLaPalabra(palabra_asignada),0)
 
-    def Test_informaCantidadDeLetrasPalabraLarga(self):
+    def test_informaCantidadDeLetrasPalabraLarga(self):
         ahorcado = Ahorcado()
         palabra_manual = 'operativa'
         palabra_asignada= ahorcado.ingresa_palabra(palabra_manual)
         self.assertEqual(ahorcado.informaCantidadDeLetrasDeLaPalabra(palabra_asignada),9)
 
-    def Test_informaCantidadDeLetrasPalabraCorta(self):
+    def test_informaCantidadDeLetrasPalabraCorta(self):
         ahorcado = Ahorcado()
         palabra_manual = 'Hola'
         palabra_asignada= ahorcado.ingresa_palabra(palabra_manual)
