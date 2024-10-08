@@ -18,3 +18,9 @@ env/
 # Archivos temporales
 *.tmp
 *.temp
+
+# Dependencias y directorios de paquetes
+/node_modules/
+/vendor/
+/pycache/
+_pycache_/
