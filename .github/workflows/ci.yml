@@ -2,11 +2,9 @@ name: CI
 
 on:
   push:
-    branches:
-      - main  # o cualquier otra rama que desees
+    branches: [ main, develop ]  
   pull_request:
-    branches:
-      - main
+    branches: [ main, develop ]  
 
 jobs:
   build:
