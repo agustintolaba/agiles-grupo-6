@@ -6,7 +6,7 @@ class TestAhorcado(unittest.TestCase):
 #   self.palabras=['dualidad','sensibilidad','costos','reducidos','exponencial','hipergeometrica']
 
   def test_asignar_palabra_manualmente(self):
-    ahorcado=Ahorcado()
+    ahorcado=Ahorcado('operativa')
     palabra_manual = 'operativa'
     palabra_asignada= ahorcado.ingresa_palabra(palabra_manual)
 
@@ -16,5 +16,3 @@ class TestAhorcado(unittest.TestCase):
 
 if __name__=="__main__":
   unittest.main()       
-
-
