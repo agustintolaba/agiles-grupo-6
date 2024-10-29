@@ -9,8 +9,8 @@ class TestAhorcado(unittest.TestCase):
         ahorcado = Ahorcado('hola')
         palabra_manual = 'hola'
         palabra_asignada= ahorcado.ingresa_palabra(palabra_manual)
-        ahorcado.adivinando(palabra_asignada,'H')
-        ahorcado.adivinando(palabra_asignada,'O')
-        ahorcado.adivinando(palabra_asignada,'L')
-        ahorcado.adivinando(palabra_asignada,'A')
+        ahorcado.adivinando(palabra_asignada,'h')
+        ahorcado.adivinando(palabra_asignada,'o')
+        ahorcado.adivinando(palabra_asignada,'l')
+        ahorcado.adivinando(palabra_asignada,'a')
         self.assertTrue(ahorcado.ganado())
