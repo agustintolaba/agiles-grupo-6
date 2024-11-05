@@ -6,6 +6,7 @@ class Ahorcado:
     self.palabra_secreta = palabra
     self.vidas = 3
     self.letras_adivinadas = set()
+    self.letras_incorrectas = set()
 
   def ingresa_palabra(self,palabra_secreta): 
     self.palabra_secreta= palabra_secreta
@@ -29,12 +30,13 @@ class Ahorcado:
       return False
     
   def adivinando(self,palabra_secreta,letra):
-    if letra in self.letras_adivinadas:
-      return #ya esta adivinada
+    if letra in self.letras_adivinadas or letra in self.letras_incorrectas:
+      return #ya esta fue ingresada
     if self.verificaLetraEnLaPalabra(palabra_secreta,letra):
       self.letras_adivinadas.add(letra)
     else: 
       self.vidas-=1
+      self.letras_incorrectas.add(letra)
     
   def ganado(self):
       return set(self.palabra_secreta).issubset(self.letras_adivinadas)
