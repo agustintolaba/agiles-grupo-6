@@ -4,22 +4,20 @@ from assignWord import Ahorcado
 class TestLongitudPalabra(unittest.TestCase):
   
   def test_informaCantidadDeLetrasPalabraVacia(self):
-    ahorcado = Ahorcado('')
-    palabra_manual = ''
-    palabra_asignada= ahorcado.ingresa_palabra(palabra_manual)
-    self.assertEqual(ahorcado.informaCantidadDeLetrasDeLaPalabra(palabra_asignada),0)
+    
+    palabra_secreta = ''
+    juego = Ahorcado(palabra_secreta)
+    self.assertEqual(juego.informaCantidadDeLetrasDeLaPalabra(juego.palabra_secreta),0)
 
   def test_informaCantidadDeLetrasPalabraLarga(self):
-    ahorcado = Ahorcado('operativa')
-    palabra_manual = 'operativa'
-    palabra_asignada= ahorcado.ingresa_palabra(palabra_manual)
-    self.assertEqual(ahorcado.informaCantidadDeLetrasDeLaPalabra(palabra_asignada),9)
+    palabra_secreta = 'operativa'
+    juego = Ahorcado(palabra_secreta)
+    self.assertEqual(juego.informaCantidadDeLetrasDeLaPalabra(juego.palabra_secreta),9)
 
   def test_informaCantidadDeLetrasPalabraCorta(self):
-    ahorcado = Ahorcado('hola')
-    palabra_manual = 'Hola'
-    palabra_asignada= ahorcado.ingresa_palabra(palabra_manual)
-    self.assertEqual(ahorcado.informaCantidadDeLetrasDeLaPalabra(palabra_asignada),4)
+    palabra_secreta = 'hola'
+    juego = Ahorcado(palabra_secreta)
+    self.assertEqual(juego.informaCantidadDeLetrasDeLaPalabra(juego.palabra_secreta),4)
 
 if __name__=="__main__":
   unittest.main()       

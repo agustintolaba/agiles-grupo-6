@@ -34,5 +34,13 @@ class TestArriesgaPalabra(unittest.TestCase):
         palabra_asignada= ahorcado.ingresa_palabra(palabra_manual)
         self.assertEqual(ahorcado.verificaLetraEnLaPalabra(palabra_asignada,'HOLA'),False)
    
+
+    def hola(self):
+        palabra_secreta = 'operativa'
+        juego = Ahorcado(palabra_secreta)
+        palabra_manual='operativa'
+        self.assertEqual(juego.verificaLetraEnLaPalabra(juego.palabra_secreta,palabra_manual),True)
+
+        
 if __name__=="__main__":
     unittest.main()       
