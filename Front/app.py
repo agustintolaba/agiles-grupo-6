@@ -55,7 +55,7 @@ def inicio():
     return render_template(
         "juego.html",
         palabra_a_mostrar=" ".join(juego.palabra_a_mostrar),
-        intentos_restantes=juego.vidas_restantes,
+        vidas_restantes=juego.vidas_restantes,
         letras_usadas=juego.letras_arriesgada,
         juego_finalizado=juego.partida_concluida,
         #palabra_adivinada=juego.palabra_a_adivinar[0],
@@ -68,7 +68,7 @@ def inicio():
 @app.route("/intentar", methods=["POST"])
 def intentar():
     letra = request.form["letra"].lower()
-   
+    print(juego.partida_concluida)
     if not juego.partida_concluida:
         juego.adivinando(juego.palabra_secreta,letra)
         juego.se_termino_el_juego()
