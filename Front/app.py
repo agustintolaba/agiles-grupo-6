@@ -58,7 +58,7 @@ def inicio():
         vidas_restantes=juego.vidas_restantes,
         letras_usadas=juego.letras_arriesgada,
         juego_finalizado=juego.partida_concluida,
-        #palabra_adivinada=juego.palabra_a_adivinar[0],
+        palabra_adivinada=juego.palabra_secreta[0],
         img=juego.img,
         #pal_arriesgada=juego.palabra_vacia,
         #nombre_usuario=session.get("nombre"),
