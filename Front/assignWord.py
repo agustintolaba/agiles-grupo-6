@@ -2,8 +2,8 @@ import random
 from typing import Self 
 
 class Ahorcado: 
-  def __init__(self,palabra):
-    self.palabra_secreta = palabra
+  def __init__(self):
+    self.palabra_secreta = []
     self.palabra_vacia = ""
     self.vidas = 4
     self.vidas_restantes = 4
@@ -92,7 +92,7 @@ class Ahorcado:
 
   def se_termino_el_juego(self):
         if self.vidas_restantes == 0 or (
-            "".join(self.palabra_a_mostrar) == self.palabra_secreta[0]
+            "".join(self.palabra_a_mostrar) == self.palabra_secreta
         ):
             self.partida_concluida = True
             self.fin_juego()
@@ -115,7 +115,7 @@ class Ahorcado:
         
         self.letras_arriesgada.append(letra)
 
-        if self.verificaLetraEnLaPalabra(self.palabra_secreta,letra):
+        if self.verificaLetraEnLaPalabra(str(self.palabra_secreta),letra):
             print('verifica letra en palabra true')
             self.mostrar_letra_correcta(letra)
             return True
@@ -125,14 +125,15 @@ class Ahorcado:
             self.img = ("static\img\ " + str(self.vidas_restantes) + ".png").replace(
                 " ", ""
             )
-            self.fin_juego()
-            return False
+        self.fin_juego()
+        return False
         
   def mostrar_letra_correcta(self, letra):
         letras_adivinadas = []
-        for l in self.palabra_secreta[0]:
+        for l in self.palabra_secreta:
             if l == letra or l in self.letras_arriesgada:
                 letras_adivinadas.append(l)
             else:
                 letras_adivinadas.append("_")
         self.palabra_a_mostrar = letras_adivinadas
+

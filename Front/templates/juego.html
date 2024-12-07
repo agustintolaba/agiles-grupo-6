@@ -25,7 +25,7 @@
           <strong>Palabra:</strong>
           <span id="palabra_a_mostrar">{{ ''.join(palabra_a_mostrar) }}</span>
         </p>
-        <p><strong>Vidas restantes:</strong> {{ vidas_restantes }}</p>
+        <p><strong>Vidas restantes:</strong> {{ intentos_restantes }}</p>
         <p><strong>Letras usadas:</strong> {{ ", ".join(letras_usadas) }}</p>
         <hr class="barra-horizontal" />
 
@@ -83,7 +83,7 @@
         %}
         <div class="image-container">
           <img
-            src="{{ url_for('static', filename='img/dubi.jpg') }}"
+            src="{{ url_for('static', filename='img/Winner.jpg') }}"
             alt="Imagen ganador"
           />
         </div>
