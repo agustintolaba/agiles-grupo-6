@@ -21,7 +21,6 @@
     <div class="container">
       <div class="content">
         <h1>Ahorcado</h1>
-        <p><strong>Ayuda:</strong> {{ pista }}</p>
         <p>
           <strong>Palabra:</strong>
           <span id="palabra_a_mostrar">{{ ''.join(palabra_a_mostrar) }}</span>
@@ -62,7 +61,7 @@
         <p><strong>El juego ha terminado.</strong></p>
         {% if palabra_a_mostrar.replace(" ", "") == palabra_adivinada or
         palabra_adivinada.replace(" ","") == pal_arriesgada.replace(" ","") %}
-        <p><strong>¡Felicidades {{ nombre_usuario }}, has ganado!</strong></p>
+        <p><strong>¡Felicidades  has ganado!</strong></p>
         {% else %}
         <p>
           <strong

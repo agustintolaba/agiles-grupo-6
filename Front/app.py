@@ -17,6 +17,7 @@ def ingresar_palabra():
 def guardar_nombre():
     palabra_secreta = request.form["nombre"]
     session["palabra_secreta"] = palabra_secreta
+
     #juego = Ahorcado(palabra_secreta)  # Crear una instancia del juego-
     return redirect(url_for("inicio")) #juego
 
@@ -38,15 +39,19 @@ def iniciar_juego(nivel):
 
 @app.route("/inicio/")
 def inicio():
-    palabra_secreta = request.args.get("palabra_secreta")
-    '''
+    #palabra_secreta = request.args.get("palabra_secreta")
+    palabra_secreta = session.get("palabra_secreta")
+    '''if not palabra_secreta:
+        return "Error: Falta la palabra secreta", 400
+    
     pista = request.args.get("pista")
     nivel = request.args.get("nivel")
     if "nombre" not in session:
         return redirect(url_for("ingresar_nombre"))
     if pala and pista:'''
     #ahorcado.iniciar_juego(nivel_dificultad=nivel, palabra=pala, pista=pista)
-    juego.iniciar_juego(palabra=palabra_secreta)
+    
+    juego.iniciar_juego(palabra_secreta)
     return render_template(
         "juego.html",
         palabra_a_mostrar=" ".join(juego.palabra_a_mostrar),
