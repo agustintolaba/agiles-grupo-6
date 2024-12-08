@@ -20,13 +20,13 @@
   <body>
     <div class="container">
       <div class="content">
-        <h1>Ahorcado</h1>
+        <h1>Jugador 2: Ahorcado</h1>
         <p>
           <strong>Palabra:</strong>
           <span id="palabra_a_mostrar">{{ ''.join(palabra_a_mostrar) }}</span>
         </p>
         <p><strong>Vidas restantes:</strong> {{ intentos_restantes }}</p>
-        <p><strong>Letras usadas:</strong> {{ ", ".join(letras_usadas) }}</p>
+        <p><strong>Letras usadas:</strong>{{ ", ".join(letras_usadas) if letras_usadas else "" }}</p>
         <hr class="barra-horizontal" />
 
         {% if not juego_finalizado %}

@@ -5,8 +5,8 @@ class Ahorcado:
   def __init__(self):
     self.palabra_secreta = []
     self.palabra_vacia = ""
-    self.vidas = 4
-    self.vidas_restantes = 4
+    self.vidas = 5
+    self.vidas_restantes = 5
     self.letras_adivinadas = set()
     self.letras_incorrectas = set()
     self.palabra_a_mostrar = []
@@ -71,6 +71,7 @@ class Ahorcado:
         self.letras_incorrectas = set()
         self.vidas_restantes = 5
         self.palabra_secreta = palabra
+        self.letras_arriesgada = []
         self.fin_juego()
         
        # self.long = len(self.palabra_a_adivinar[0])

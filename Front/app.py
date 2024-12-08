@@ -12,10 +12,6 @@ juego = Ahorcado()
 def ingresar_palabra():
     return render_template("inicio.html")
 
-@app.route("/ingresa")
-def ingresar():
-    return render_template("inicio.html")
-
 
 @app.route("/guardar_nombre", methods=["POST"])
 def guardar_nombre():
@@ -123,7 +119,8 @@ def intentarP():
 @app.route("/reiniciar")
 def reiniciar():
     #juego.reiniciar_juego()
-    return redirect(url_for("ingresa"))
+    #return redirect(url_for("ingresa"))
+    return render_template("inicio.html")
 
 
 if __name__ == "__main__":
