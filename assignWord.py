@@ -56,7 +56,6 @@ class Ahorcado:
         self.palabra_secreta = palabra
         self.fin_juego()
         
-       # self.long = len(self.palabra_a_adivinar[0])
         self.palabra_a_mostrar = ["_" for _ in self.palabra_secreta[0]]
        
 

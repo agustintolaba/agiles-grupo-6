@@ -4,7 +4,7 @@ from assignWord import Ahorcado
 app = Flask(__name__)
 app.secret_key = "your_secret_key"
 
-juego = Ahorcado()
+juego = Ahorcado()  # Crear una instancia del juego-
 
 
 
@@ -18,38 +18,12 @@ def guardar_nombre():
     palabra_secreta = request.form["nombre"]
     session["palabra_secreta"] = palabra_secreta
 
-    #juego = Ahorcado(palabra_secreta)  # Crear una instancia del juego-
     return redirect(url_for("inicio")) #juego
-
-
-'''@app.route("/elegir_dificultad")
-def elegir_dificultad():
-    if "nombre" not in session:
-        return redirect(url_for("ingresar_nombre"))
-    return render_template("inicio.html")'''
-
-
-'''@app.route("/inicio/<nivel>")
-def iniciar_juego(nivel):
-    if "nombre" not in session:
-        return redirect(url_for("ingresar_nombre"))
-    ahorcado.iniciar_juego(nivel_dificultad=nivel)
-    return redirect(url_for("inicio"))'''
-
 
 @app.route("/inicio/")
 def inicio():
-    #palabra_secreta = request.args.get("palabra_secreta")
+
     palabra_secreta = session.get("palabra_secreta")
-    '''if not palabra_secreta:
-        return "Error: Falta la palabra secreta", 400
-    
-    pista = request.args.get("pista")
-    nivel = request.args.get("nivel")
-    if "nombre" not in session:
-        return redirect(url_for("ingresar_nombre"))
-    if pala and pista:'''
-    #ahorcado.iniciar_juego(nivel_dificultad=nivel, palabra=pala, pista=pista)
     
     juego.iniciar_juego(palabra_secreta)
     return render_template(
@@ -60,23 +34,12 @@ def inicio():
         juego_finalizado=juego.partida_concluida,
         palabra_adivinada=juego.palabra_secreta,
         img=juego.img,
-        #pal_arriesgada=juego.palabra_vacia,
-        #nombre_usuario=session.get("nombre"),
     )
 
 @app.route("/segundo/")
 def segundo():
-    #palabra_secreta = request.args.get("palabra_secreta")
-    palabra_secreta = session.get("palabra_secreta")
-    '''if not palabra_secreta:
-        return "Error: Falta la palabra secreta", 400
     
-    pista = request.args.get("pista")
-    nivel = request.args.get("nivel")
-    if "nombre" not in session:
-        return redirect(url_for("ingresar_nombre"))
-    if pala and pista:'''
-    #ahorcado.iniciar_juego(nivel_dificultad=nivel, palabra=pala, pista=pista)
+    palabra_secreta = session.get("palabra_secreta")
     
     juego.fin_juego()
     return render_template(
@@ -88,7 +51,6 @@ def segundo():
         palabra_adivinada=juego.palabra_secreta,
         img=juego.img,
         pal_arriesgada=juego.palabra_vacia,
-        #nombre_usuario=session.get("nombre"),
     )
 
 @app.route("/intentar", methods=["POST"])
@@ -118,8 +80,6 @@ def intentarP():
 
 @app.route("/reiniciar")
 def reiniciar():
-    #juego.reiniciar_juego()
-    #return redirect(url_for("ingresa"))
     return render_template("inicio.html")
 
 
