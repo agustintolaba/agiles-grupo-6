@@ -1,44 +1,51 @@
-name: Selenium Tests
+name: acceptance-tests
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+on: push
 
 jobs:
-  selenium-tests:
+  test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.9'
+          python-version: 3.8
 
       - name: Install dependencies
         run: |
+          python -m pip install --upgrade pip
           pip install -r requirements.txt
-          pip install behave
+          pip install flask behave Flask-Testing selenium chromedriver-autoinstaller python-dotenv gunicorn
 
-      - name: Install Google Chrome
+      - name: Add Chrome repository and install Chrome
         run: |
+          wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+          sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list'
           sudo apt-get update
           sudo apt-get install -y google-chrome-stable
 
-      - name: Install ChromeDriver
+      - name: Verify Chrome installation
         run: |
-          wget https://chromedriver.storage.googleapis.com/$(curl -s https://chromedriver.storage.googleapis.com/LATEST_RELEASE)/chromedriver_linux64.zip
-          unzip chromedriver_linux64.zip
-          sudo mv chromedriver /usr/local/bin/
+          which google-chrome
+          google-chrome --version
 
-      - name: Run Behave Tests
-        env:
-          DISPLAY: :99 # Para Chrome en modo headless
+      - name: Install ChromeDriver using chromedriver-autoinstaller
         run: |
-          behave features/
+          python -c "import chromedriver_autoinstaller; chromedriver_autoinstaller.install()"
+          which chromedriver
+          chromedriver --version
+
+      - name: Run Flask app with Gunicorn
+        run: |
+          gunicorn -w 4 -b 0.0.0.0:8000 ahoracadoapp:app &
+          sleep 15 # Aumentar el tiempo de espera
+
+      - name: Run acceptance tests
+        run: |
+          Xvfb :99 -screen 0 1920x1080x24 &
+          export DISPLAY=:99
+          behave --define base_url=http://0.0.0.0:8000 -v
