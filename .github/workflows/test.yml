@@ -41,7 +41,7 @@ jobs:
 
       - name: Run Flask app with Gunicorn
         run: |
-          gunicorn -w 4 -b 0.0.0.0:8000 ahoracadoapp:app &
+          gunicorn -w 4 -b 0.0.0.0:8000 app:app &
           sleep 15 # Aumentar el tiempo de espera
 
       - name: Run acceptance tests
