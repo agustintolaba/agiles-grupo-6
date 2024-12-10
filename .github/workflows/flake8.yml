@@ -1,0 +1,32 @@
+name: Flake8 Linter
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Paso 1: Descargar el repositorio
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Paso 2: Configurar Python
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      # Paso 3: Instalar Flake8
+      - name: Install Flake8
+        run: pip install flake8
+
+      # Paso 4: Ejecutar Flake8
+      - name: Run Flake8
+        run: flake8 . || true
