@@ -104,7 +104,7 @@ class Ahorcado:
         if self.verificaLetraEnLaPalabra(str(self.palabra_secreta),letra):
             
             self.mostrar_letra_correcta(letra)
-            return True
+            return False #Es true
         else:
             
             self.vidas_restantes -= 1
