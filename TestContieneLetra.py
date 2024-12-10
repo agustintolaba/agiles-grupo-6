@@ -1,31 +1,36 @@
 import unittest
 from assignWord import Ahorcado 
 
-class TestLongitudPalabra(unittest.TestCase):
+class TestContieneLetra(unittest.TestCase):
    
 
     def test_letra_minuscula_presente(self):
-        ahorcado = Ahorcado('operativa')
-        palabra_manual = 'operativa'
-        palabra_asignada= ahorcado.ingresa_palabra(palabra_manual)
-        self.assertEqual(ahorcado.verificaLetraEnLaPalabra(palabra_asignada,'a'),True)
+
+        juego = Ahorcado()
+        juego.palabra_secreta = 'operativa'
+        
+        self.assertEqual(juego.verificaLetraEnLaPalabra(juego.palabra_secreta,'a'),True)
 
     def test_letra_minuscula_ausente(self):
-        ahorcado = Ahorcado('operativa')
-        palabra_manual = 'operativa'
-        palabra_asignada= ahorcado.ingresa_palabra(palabra_manual)
-        self.assertEqual(ahorcado.verificaLetraEnLaPalabra(palabra_asignada,'b'),False)
+        
+        juego = Ahorcado()
+        juego.palabra_secreta = 'operativa'
+
+        self.assertEqual(juego.verificaLetraEnLaPalabra(juego.palabra_secreta,'b'),False)
 
     def test_letra_mayuscula_presente(self):
-        ahorcado = Ahorcado('operativa')
-        palabra_manual = 'operativa'
-        palabra_asignada= ahorcado.ingresa_palabra(palabra_manual)
-        self.assertEqual(ahorcado.verificaLetraEnLaPalabra(palabra_asignada,'A'),True)
+        
+        juego = Ahorcado()
+        juego.palabra_secreta = 'operativa'
+
+        self.assertEqual(juego.verificaLetraEnLaPalabra(juego.palabra_secreta,'A'),True)
 
     def test_letra_mayuscula_ausente(self):
-        ahorcado = Ahorcado('operativa')
-        palabra_manual = 'operativa'
-        palabra_asignada= ahorcado.ingresa_palabra(palabra_manual)
-        self.assertEqual(ahorcado.verificaLetraEnLaPalabra(palabra_asignada,'B'),False)
+        
+        juego = Ahorcado()
+        juego.palabra_secreta = 'operativa'
+
+        self.assertEqual(juego.verificaLetraEnLaPalabra(juego.palabra_secreta,'B'),False)
+        
 if __name__=="__main__":
     unittest.main()       

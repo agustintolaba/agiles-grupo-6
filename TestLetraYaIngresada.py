@@ -2,26 +2,28 @@ import unittest
 from assignWord import Ahorcado 
 
 class TestLetraYaIngresada(unittest.TestCase):
+
   def testLetraIncorrectaYaIngresada(self):
-    palabra_secreta = 'hola'
-    juego = Ahorcado(palabra_secreta)
-
-    juego.adivinando(juego.palabra_secreta,'p')
-    vidas_despues_primera_adiv = juego.vidas
-
-    juego.adivinando(juego.palabra_secreta,'p')
-    self.assertEqual(juego.vidas,vidas_despues_primera_adiv)
-    
+  
+    juego = Ahorcado()
+    juego.palabra_secreta = 'operativa'
+    juego.intento('w')
+    self.assertEqual(juego.vidas_restantes , 4)
+    self.assertTrue(juego.letras_arriesgadas_en_el_juego,'w')
+    juego.intento('w')
+    self.assertEqual(juego.vidas_restantes , 4)
+    self.assertTrue(juego.letras_arriesgadas_en_el_juego,'w')
     
   def testLetraCorrectaYaIngresada(self):
-    palabra_secreta = 'hola'
-    juego = Ahorcado(palabra_secreta)
 
-    juego.adivinando(juego.palabra_secreta,'a')
-    vidas_despues_primera_adiv = juego.vidas
-
-    juego.adivinando(juego.palabra_secreta,'a')
-    self.assertEqual(juego.vidas,vidas_despues_primera_adiv)
+    juego = Ahorcado()
+    juego.palabra_secreta = 'operativa'
+    juego.intento('p')
+    self.assertEqual(juego.vidas_restantes , 5)
+    self.assertTrue(juego.letras_arriesgadas_en_el_juego,'p')
+    juego.intento('p')
+    self.assertEqual(juego.vidas_restantes , 5)
+    self.assertTrue(juego.letras_arriesgadas_en_el_juego,'p')
 
 if __name__=="__main__":
   unittest.main()      
