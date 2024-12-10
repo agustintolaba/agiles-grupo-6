@@ -4,8 +4,8 @@ import time
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-BASE_URL = "http://127.0.0.1:5000/"
-
+#BASE_URL = "http://127.0.0.1:5000/"
+BASE_URL = "https://agiles-grupo-6.onrender.com"
 
 @given("que estoy en la página de ingreso de nombre")
 def step_given_en_pagina_ingreso_nombre(context):
