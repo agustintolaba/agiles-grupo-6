@@ -28,51 +28,6 @@ def step_when_hago_clic_en_guardar(context):
     boton_siguiente.click()
     time.sleep(1)
 
-
-"""@then("debo ser redirigido a la página de elección de dificultad")
-def step_then_redirigido_a_elegir_dificultad(context):
-    time.sleep(1)
-    assert "elegir_dificultad" in context.browser.current_url"""
-
-
-"""@when(
-    'selecciono la dificultad "{dificultad}" y el juego se genera con la palabra "{palabra}" y pista "{pista}"'
-)
-def step_when_selecciono_dificultad_y_juego_se_genera(
-    context, dificultad, palabra, pista
-):
-    # Seleccionar la dificultad
-    time.sleep(1)
-    if dificultad == "fácil":
-        boton_dificultad = context.browser.find_element(
-            By.CSS_SELECTOR, 'form[action*="facil"] button[type="submit"]'
-        )
-    elif dificultad == "media":
-        boton_dificultad = context.browser.find_element(
-            By.CSS_SELECTOR, 'form[action*="media"] button[type="submit"]'
-        )
-    elif dificultad == "difícil":
-        boton_dificultad = context.browser.find_element(
-            By.CSS_SELECTOR, 'form[action*="dificil"] button[type="submit"]'
-        )
-    else:
-        raise ValueError("Dificultad no reconocida")
-
-    context.browser.execute_script(
-        "arguments[0].setAttribute('type', 'button')", boton_dificultad
-    )
-
-    boton_dificultad.click()
-    time.sleep(1)
-
-    context.browser.get(
-        f"{BASE_URL}/inicio/?{dificultad}&palabra={palabra}&pista={pista}"
-    )
-
-    time.sleep(1)
-    assert "inicio" in context.browser.current_url"""
-
-
 @then("debo ser redirigido a la página de juego")
 def step_then_redirigido_a_pagina_de_juego(context):
     time.sleep(1)
@@ -120,27 +75,29 @@ def step_when_arriesgo_palabra(context, palabra):
     boton_enviar.click()
     time.sleep(1)
 
-
-@then('la palabra "{palabra}" debería ser registrada como adivinada')
-def step_then_palabra_adivinada(context, palabra):
+@then('El juego se ha ganado')
+def step_juego_ganado(context):
     wait = WebDriverWait(context.browser, 10)
-    palabra_a_mostrar_texto = wait.until(
-        EC.visibility_of_element_located((By.ID, "palabra_a_mostrar"))
+    texto_ganador = wait.until(
+        EC.presence_of_element_located((By.CSS_SELECTOR, "[data-testid='mensaje-final']"))    
     ).text
     assert (
-        palabra.lower() == palabra_a_mostrar_texto.lower().replace(" ", "").lower()
-    ), f"La palabra {palabra} está registrada como adivinada."
+        texto_ganador == "¡Felicidades has ganado!"
+    )
 
 
-@then('la palabra "{palabra}" debería ser registrada como no adivinada "{palabraAdi}"')
-def step_then_palabra_no_adivinada(context, palabra, palabraAdi):
+@then('El juego se ha perdido')
+def step_juego_perdido(context):
     wait = WebDriverWait(context.browser, 10)
-    palabra_a_mostrar_texto = wait.until(
-        EC.visibility_of_element_located((By.ID, "palabra_a_mostrar"))
+    texto_ganador = wait.until(
+        EC.presence_of_element_located((By.CSS_SELECTOR, "[data-testid='mensaje-final']"))    
     ).text
-    palabra_a_mostrar = palabra_a_mostrar_texto.replace(" ", "").lower()
-    palabra_esperada = palabraAdi.replace(" ", "").lower()
-
     assert (
-        palabra_a_mostrar != palabra_esperada
-    ), f'La palabra "{palabra}" debería ser registrada como no adivinada.'
+        texto_ganador == "Lo siento, has perdido."
+    )
+
+@when('hago clic en el botón "Reiniciar')
+def step_when_hago_clic_en_reiniciar(context):
+    boton_reiniciar = context.browser.find_element(By.LINK_TEXT, "Reiniciar")
+    boton_reiniciar.click()
+    time.sleep(1)

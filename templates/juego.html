@@ -60,14 +60,15 @@
         <p><strong>El juego ha terminado.</strong></p>
         {% if palabra_a_mostrar.replace(" ", "") == palabra_adivinada or
         palabra_adivinada.replace(" ","") == pal_arriesgada.replace(" ","") %}
-        <p><strong>¡Felicidades  has ganado!</strong></p>
+        <p data-testid="mensaje-final"><strong>¡Felicidades  has ganado!</strong></p>
         {% else %}
-        <p>
+        <p data-testid="mensaje-final">
           <strong
-            >Lo siento, has perdido. La palabra era "{{ palabra_adivinada
-            }}".</strong
+            >Lo siento, has perdido.</strong
           >
         </p>
+        <p>
+          <strong>La palabra era "{{ palabra_adivinada}}".</strong></p>
         {% endif %}
         <a href="{{ url_for('reiniciar') }}">Reiniciar</a>
         {% endif %}
