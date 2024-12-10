@@ -40,7 +40,7 @@ class Ahorcado:
       return True
     else:
       self.vidas_restantes -=1
-      if self.vidas_restantes == 0:
+      if self.vidas_restantes == 10:
             self.partida_concluida = True
       return False
        
