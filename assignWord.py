@@ -37,7 +37,7 @@ class Ahorcado:
   def arriesgaPalabra(self,palabra_secreta:str,palabra:str):
 
     if palabra.lower() == palabra_secreta.lower():
-      return False
+      return True
     else:
       self.vidas_restantes -=1
       if self.vidas_restantes == 0:
